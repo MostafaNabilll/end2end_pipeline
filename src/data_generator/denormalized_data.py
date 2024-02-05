@@ -8,7 +8,7 @@ import boto3
 from botocore.exceptions import ClientError
 from io import StringIO
 import os
-
+import json
 
 class DogDataGenerator:
     def __init__(self, num_records=5000):
