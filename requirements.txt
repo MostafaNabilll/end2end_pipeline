@@ -1,0 +1,10 @@
+dognames==1.2
+Faker==8.10.3
+pandas==1.4.0
+boto3==1.18.97
+apache-airflow==2.1.2
+apache-airflow[aws]==2.1.2
+snowflake-connector-python==2.6.2
+dbt==0.21.0
+kubernetes==22.3.0
+docker==5.0.2
