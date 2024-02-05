@@ -218,7 +218,7 @@ if __name__ == "__main__":
         aws_secret_access_key = secret.get('aws_secret_access_key')
 
         # Set the S3 bucket and file key
-        bucket_name = 'Dog_data'
+        bucket_name = 'DogsPipeline-personal'
         file_key = 'data/denormalized_data.csv'
 
         # Get the absolute path to the CSV file
