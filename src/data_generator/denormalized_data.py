@@ -170,24 +170,23 @@ def get_secret():
     
     return secret
 
-def create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key):
+def create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key, region_name='eu-west-3'):
     s3 = boto3.client(
         's3',
-        region_name='eu-west-3',  # Update the region code
+        region_name=region_name,
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
     )
 
     try:
-        # Check if the bucket already exists
         s3.head_bucket(Bucket=bucket_name)
         print(f"S3 bucket '{bucket_name}' already exists.")
     except ClientError as e:
         if e.response['Error']['Code'] == '404':
-            # Bucket does not exist, create it with the appropriate location constraint
+            location_constraint = region_name if region_name != 'us-east-1' else ''
             s3.create_bucket(
                 Bucket=bucket_name,
-                CreateBucketConfiguration={'LocationConstraint': 'EU'}
+                CreateBucketConfiguration={'LocationConstraint': location_constraint}
             )
             print(f"S3 bucket '{bucket_name}' created.")
         else:
