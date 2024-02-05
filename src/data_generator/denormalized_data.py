@@ -215,7 +215,7 @@ def upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access
 
 def get_args():
     parser = argparse.ArgumentParser(description='Generate dog data and upload to S3')
-    parser.add_argument('--num_records', type=int, default=50, help='Number of records to generate')
+    parser.add_argument('--num_records', type=int, default=5000, help='Number of records to generate')
 
     return parser.parse_args()
 
