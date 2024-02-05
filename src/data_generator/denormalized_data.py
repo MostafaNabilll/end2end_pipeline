@@ -173,6 +173,7 @@ def get_secret():
 def create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key):
     s3 = boto3.client(
         's3',
+        region_name='eu-west-3',  # Update the region code
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
     )
@@ -192,6 +193,7 @@ def upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access
 
     s3 = boto3.client(
         's3',
+        region_name='eu-west-3',  # Update the region code
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
     )
