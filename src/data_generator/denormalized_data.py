@@ -146,13 +146,10 @@ class DogDataGenerator:
 
 
 
-
-
 def get_secret():
     secret_name = "S3-cred"
     region_name = "eu-west-3"
 
-    # Create a Secrets Manager client
     session = boto3.session.Session()
     client = session.client(
         service_name='secretsmanager',
@@ -166,9 +163,8 @@ def get_secret():
     except ClientError as e:
         raise e
 
-    secret_string = get_secret_value_response['SecretString']
-    secret_dict = json.loads(secret_string)
-    return secret_dict
+    secret = get_secret_value_response['SecretString']
+    return secret
 
 def create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key):
     s3 = boto3.client(
@@ -178,16 +174,13 @@ def create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key):
     )
 
     try:
-        # Check if the bucket already exists
         s3.head_bucket(Bucket=bucket_name)
         print(f"S3 bucket '{bucket_name}' already exists.")
     except ClientError as e:
         if e.response['Error']['Code'] == '404':
-            # Bucket does not exist, create it
             s3.create_bucket(Bucket=bucket_name)
             print(f"S3 bucket '{bucket_name}' created.")
         else:
-            # Other error, print the error message
             print(f"Error: {e.response['Error']['Message']}")
 
 def upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access_key):
@@ -216,8 +209,11 @@ if __name__ == "__main__":
         bucket_name = 'Dog_data'
         file_key = 'data/denormalized_data.csv'
 
+        # Get the absolute path to the CSV file
+        csv_file_path = os.path.join(os.path.dirname(__file__), '..', 'denormalized_data.csv')
+
         # Load DataFrame from CSV
-        df = pd.read_csv('src/denormalized_data.csv')
+        df = pd.read_csv(csv_file_path)
 
         # Upload DataFrame to S3
         upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access_key)
