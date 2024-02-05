@@ -213,30 +213,26 @@ def upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access
     print(f"Data uploaded to S3 bucket '{bucket_name}' with file key '{file_key}'.")
 
 
-def get_args():
-    parser = argparse.ArgumentParser(description='Generate dog data and upload to S3')
-    parser.add_argument('--num_records', type=int, default=5000, help='Number of records to generate')
-
-    return parser.parse_args()
 
 
-def main():
-    try:
-        args = get_args()
-        num_records = args.num_records
-
-        # Create an instance of DogDataGenerator
-        data_generator = DogDataGenerator(num_records=num_records)
-
-        # Save the generated data to a CSV file
-        csv_filename = 'denormalized_data.csv'
-        csv_filepath = os.path.join(os.path.dirname(__file__), csv_filename)
-        data_generator.save_to_csv(csv_filepath)
-
-        # ... (the rest of your existing code)
-    except Exception as e:
-        print(f"An error occurred: {e}")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        secret = get_secret()
+        aws_access_key_id = secret.get('aws_access_key_id')
+        aws_secret_access_key = secret.get('aws_secret_access_key')
+        
+        data_generator = DogDataGenerator(num_records=5000)
+        
+        generated_data_file = 'denormalized_data.csv'
+        data_generator.save_to_csv(generated_data_file)
+
+        bucket_name = 'dogspipeline-personal'
+        file_key = 'data/denormalized_data.csv'
+
+        df = pd.read_csv(generated_data_file)
+
+        upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access_key)
+    except Exception as e:
+        print(f"An error occurred: {e}")
