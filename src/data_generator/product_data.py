@@ -1,5 +1,5 @@
 import pandas as pd
-
+import os 
 class ProductDataGenerator:
     def __init__(self):
         self.product_data = [
@@ -49,6 +49,7 @@ class ProductDataGenerator:
         return synthetic_df
 
 
-data_generator = ProductDataGenerator()
-csv_filename = 'synthetic_product_data.csv'
-data_generator.generate_csv(csv_filename)
+if __name__ == "__main__":
+    data_generator = ProductDataGenerator()
+    csv_filename = '../synthetic_product_data.csv'
+    data_generator.generate_csv(csv_filename)

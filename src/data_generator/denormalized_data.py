@@ -61,7 +61,7 @@ class DogDataGenerator:
         }
 
     def generate_product(self, order_id):
-        synthetic_product_data = pd.read_csv('synthetic_product_data.csv')
+        synthetic_product_data = pd.read_csv('../synthetic_product_data.csv')
         product = synthetic_product_data.sample().to_dict(orient='records')[0]
         quantity = random.randint(1, 10)
         subtotal = round(product['product_price'] * quantity, 2)
@@ -216,8 +216,7 @@ def upload_to_s3(df, bucket_name, file_key):
 if __name__ == "__main__":
     try:
         data_generator = DogDataGenerator(num_records=50)
-        data_generator.save_to_csv('denormalized_data.csv')
-
+        data_generator.save_to_csv('../denormalized_data.csv')
         # Retrieve AWS credentials from AWS Secrets Manager
         secret = get_secret()
         aws_access_key_id = secret['aws_access_key_id']
