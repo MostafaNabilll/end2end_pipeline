@@ -9,9 +9,10 @@ from botocore.exceptions import ClientError
 from io import StringIO
 import os
 import json
+import argparse
 
 class DogDataGenerator:
-    def __init__(self, num_records=5000):
+    def __init__(self, num_records):
         self.num_records = num_records
         self.fake = Faker('fr_FR')
         self.breeds_list = self.fetch_dog_breeds()
@@ -210,24 +211,37 @@ def upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access
     s3.put_object(Body=csv_buffer.getvalue(), Bucket=bucket_name, Key=file_key)
     print(f"Data uploaded to S3 bucket '{bucket_name}' with file key '{file_key}'.")
 
-if __name__ == "__main__":
+
+
+def get_args():
+    parser = argparse.ArgumentParser(description='Generate dog data and upload to S3')
+    parser.add_argument('--num_records', type=int, default=5000, help='Number of records to generate')
+
+    return parser.parse_args()
+
+
+def main():
     try:
-        # Retrieve AWS credentials from AWS Secrets Manager
+        args = get_args()
+        num_records = args.num_records
+
+        data_generator = DogDataGenerator(num_records=num_records)
+        data_generator.save_to_csv('../src/denormalized_data.csv')
+
         secret = get_secret()
         aws_access_key_id = secret.get('aws_access_key_id')
         aws_secret_access_key = secret.get('aws_secret_access_key')
 
-        # Set the S3 bucket and file key
         bucket_name = 'dogspipeline-personal'
         file_key = 'data/denormalized_data.csv'
 
-        # Get the absolute path to the CSV file
-        csv_file_path = os.path.join(os.path.dirname(__file__), '..', 'denormalized_data.csv')
+        csv_file_path = os.path.join(os.path.dirname(__file__), '..', 'src', 'denormalized_data.csv')
 
-        # Load DataFrame from CSV
         df = pd.read_csv(csv_file_path)
 
-        # Upload DataFrame to S3
         upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access_key)
     except Exception as e:
         print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    main()
