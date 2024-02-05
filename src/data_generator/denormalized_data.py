@@ -179,14 +179,21 @@ def create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key):
     )
 
     try:
+        # Check if the bucket already exists
         s3.head_bucket(Bucket=bucket_name)
         print(f"S3 bucket '{bucket_name}' already exists.")
     except ClientError as e:
         if e.response['Error']['Code'] == '404':
-            s3.create_bucket(Bucket=bucket_name)
+            # Bucket does not exist, create it with the appropriate location constraint
+            s3.create_bucket(
+                Bucket=bucket_name,
+                CreateBucketConfiguration={'LocationConstraint': 'EU'}
+            )
             print(f"S3 bucket '{bucket_name}' created.")
         else:
+            # Other error, print the error message
             print(f"Error: {e.response['Error']['Message']}")
+
 
 def upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access_key):
     create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key)
