@@ -149,8 +149,8 @@ class DogDataGenerator:
 
 
 def get_secret():
-    secret_name = "S3-crede"
-    region_name = "us-east-1"
+    secret_name = "S3-cred"
+    region_name = "eu-west-3"
 
     # Create a Secrets Manager client
     session = boto3.session.Session()
@@ -164,12 +164,11 @@ def get_secret():
             SecretId=secret_name
         )
     except ClientError as e:
-        # Handle exception
         raise e
 
-    secret = get_secret_value_response['SecretString']
-    return secret
-
+    secret_string = get_secret_value_response['SecretString']
+    secret_dict = json.loads(secret_string)
+    return secret_dict
 
 def create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key):
     s3 = boto3.client(
@@ -191,13 +190,7 @@ def create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key):
             # Other error, print the error message
             print(f"Error: {e.response['Error']['Message']}")
 
-def upload_to_s3(df, bucket_name, file_key):
-    secret = get_secret()
-    aws_access_key_id = secret.get('aws_access_key_id')
-    aws_secret_access_key = secret.get('aws_secret_access_key')
-
-    print(f"aws_access_key_id: {aws_access_key_id}")
-
+def upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access_key):
     create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key)
 
     s3 = boto3.client(
@@ -212,21 +205,21 @@ def upload_to_s3(df, bucket_name, file_key):
     s3.put_object(Body=csv_buffer.getvalue(), Bucket=bucket_name, Key=file_key)
     print(f"Data uploaded to S3 bucket '{bucket_name}' with file key '{file_key}'.")
 
-
 if __name__ == "__main__":
     try:
-        data_generator = DogDataGenerator(num_records=50)
-        data_generator.save_to_csv('../denormalized_data.csv')
         # Retrieve AWS credentials from AWS Secrets Manager
         secret = get_secret()
-        aws_access_key_id = secret['aws_access_key_id']
-        aws_secret_access_key = secret['aws_secret_access_key']
+        aws_access_key_id = secret.get('aws_access_key_id')
+        aws_secret_access_key = secret.get('aws_secret_access_key')
 
+        # Set the S3 bucket and file key
         bucket_name = 'Dog_data'
         file_key = 'data/denormalized_data.csv'
 
+        # Load DataFrame from CSV
         df = pd.read_csv('denormalized_data.csv')
 
+        # Upload DataFrame to S3
         upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access_key)
     except Exception as e:
         print(f"An error occurred: {e}")
