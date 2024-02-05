@@ -163,7 +163,11 @@ def get_secret():
     except ClientError as e:
         raise e
 
-    secret = get_secret_value_response['SecretString']
+    secret_string = get_secret_value_response['SecretString']
+    
+    # Parse the JSON string into a dictionary
+    secret = json.loads(secret_string)
+    
     return secret
 
 def create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key):
