@@ -217,7 +217,7 @@ if __name__ == "__main__":
         file_key = 'data/denormalized_data.csv'
 
         # Load DataFrame from CSV
-        df = pd.read_csv('../src/denormalized_data.csv')
+        df = pd.read_csv('src/denormalized_data.csv')
 
         # Upload DataFrame to S3
         upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access_key)
