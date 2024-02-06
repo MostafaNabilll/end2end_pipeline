@@ -1,0 +1,160 @@
+version: 2
+
+sources:
+  - name: dogpipeline
+    description: Generated raw data
+    database: dogpipeline
+    schema: dogs
+    tables:
+      - name: full_data
+        description: Raw data table
+        freshness:
+          warn_after:
+            count: 100
+            period: day
+          error_after:
+            count: 10000
+            period: day
+        loaded_at_field: appointment_date
+        columns:
+          - name: owner_id
+            description: Unique ID for the owner
+            tests:
+              - unique:
+                  column_name: "owner_id"
+                  config:
+                    warn_if: ">1"
+              - not_null
+          - name: owner_first_name
+            description: Owner's first name
+            tests:
+              - not_null
+          - name: owner_last_name
+            description: Owner's last name
+            tests:
+              - not_null
+          - name: owner_email
+            description: Owner's email address
+            tests:
+              - not_null
+          - name: owner_phone
+            description: Owner's phone number
+            tests:
+              - not_null
+          - name: owner_address
+            description: Owner's address
+            tests:
+              - not_null
+          - name: dog_id
+            description: Unique ID for the dog
+            tests:
+              - unique:
+                  column_name: "dog_id"
+                  config:
+                    warn_if: ">1"
+              - not_null
+          - name: dog_name
+            description: Dog's name
+            tests:
+              - not_null
+          - name: dog_breed
+            description: Breed of the dog
+            tests:
+              - not_null
+          - name: dog_age
+            description: Age of the dog
+            tests:
+              - not_null
+          - name: dog_gender
+            description: Gender of the dog
+            tests:
+              - not_null
+          - name: order_id
+            description: Unique ID for the order
+            tests:
+              - unique:
+                  column_name: "order_id"
+                  config:
+                    warn_if: ">1"
+                    error_if: ">10000"
+              - not_null
+          - name: order_date
+            description: Date of the order
+            tests:
+              - not_null
+          - name: product_id
+            description: Unique ID for the product
+            tests:
+              - unique:
+                  column_name: "product_id"
+                  config:
+                    warn_if: ">1"
+              - not_null
+          - name: quantity
+            description: Quantity of the product in the order
+            tests:
+              - not_null
+          - name: subtotal
+            description: Subtotal of the product in the order
+            tests:
+              - not_null
+          - name: product_name
+            description: Name of the product
+            tests:
+              - not_null
+          - name: product_price
+            description: Price of the product
+            tests:
+              - not_null
+          - name: product_description
+            description: Description of the product
+            tests:
+              - not_null
+          - name: transaction_id
+            description: Unique ID for the transaction
+            tests:
+              - unique:
+                  column_name: "transaction_id"
+                  config:
+                    warn_if: ">1"
+              - not_null
+          - name: veterinarian_id
+            description: Unique ID for the veterinarian
+            tests:
+              - unique:
+                  column_name: "veterinarian_id"
+                  config:
+                    warn_if: ">1"
+              - not_null
+          - name: veterinarian_first_name
+            description: Veterinarian's first name
+            tests:
+              - not_null
+          - name: veterinarian_last_name
+            description: Veterinarian's last name
+            tests:
+              - not_null
+          - name: veterinarian_specialization
+            description: Veterinarian's specialization
+            tests:
+              - not_null
+          - name: veterinarian_contact
+            description: Veterinarian's contact information
+            tests:
+              - not_null
+          - name: appointment_id
+            description: Unique ID for the appointment
+            tests:
+              - unique:
+                  column_name: "appointment_id"
+                  config:
+                    warn_if: ">1"
+              - not_null
+          - name: appointment_date
+            description: Date of the appointment
+            tests:
+              - not_null
+          - name: appointment_purpose
+            description: Purpose of the appointment
+            tests:
+              - not_null

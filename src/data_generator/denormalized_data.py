@@ -9,7 +9,7 @@ from botocore.exceptions import ClientError
 from io import StringIO
 import os
 import json
-import argparse
+import snowflake.connector
 
 
 class DogDataGenerator:
@@ -211,9 +211,6 @@ def upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access
 
     s3.put_object(Body=csv_buffer.getvalue(), Bucket=bucket_name, Key=file_key)
     print(f"Data uploaded to S3 bucket '{bucket_name}' with file key '{file_key}'.")
-
-
-
 
 
 
