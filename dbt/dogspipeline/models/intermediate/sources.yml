@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: dogpipeline
+  - name: dogspipeline
     description: Generated raw data
     database: dogpipeline
     schema: dogs

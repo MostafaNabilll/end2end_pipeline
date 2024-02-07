@@ -1,26 +1,37 @@
--- models/intermediate/dim_owner.sql
-
 {{ config(
-    materialized='table',
+    materialized='incremental',
+    unique_key='owner_id'
 ) }}
 
-WITH raw_owner AS (
-  SELECT
+WITH remove_dups AS (
+    SELECT
+        owner_id,
+        owner_first_name,
+        owner_last_name,
+        owner_email,
+        CASE
+            WHEN SUBSTRING(TRIM(REGEXP_REPLACE(owner_phone, '[^0-9]', '')), 1, 1) = '0' THEN TRIM(REGEXP_REPLACE(owner_phone, '[^0-9]', ''))
+            WHEN SUBSTRING(TRIM(REGEXP_REPLACE(owner_phone, '[^0-9]', '')), 1, 2) = '33' THEN '0' || SUBSTRING(TRIM(REGEXP_REPLACE(owner_phone, '[^0-9]', '')), 3)
+            WHEN SUBSTRING(TRIM(REGEXP_REPLACE(owner_phone, '[^0-9]', '')), 1, 5) = '+33(0)' THEN '0' || SUBSTRING(TRIM(REGEXP_REPLACE(owner_phone, '[^0-9]', '')), 7)
+            ELSE '0' || TRIM(REGEXP_REPLACE(owner_phone, '[^0-9]', ''))
+        END AS formatted_phone,
+        owner_address,
+        ROW_NUMBER() OVER (PARTITION BY owner_id ORDER BY owner_id) AS row_num
+    FROM "DOGPIPELINE"."DOGS"."full_data"
+)
+
+SELECT
     owner_id,
     owner_first_name,
     owner_last_name,
     owner_email,
-    owner_phone,
-    owner_address
-  FROM {{ ref('dogpipeline.dogs.full_data') }}
-  WHERE owner_id IS NOT NULL
-)
-
-SELECT
-  owner_id,
-  owner_first_name,
-  owner_last_name,
-  owner_email,
-  owner_phone,
-  owner_address
-FROM raw_owner;
+    CASE
+        WHEN SUBSTRING(formatted_phone, 1, 2) = '00' THEN '0' || SUBSTRING(formatted_phone, 3)
+        WHEN SUBSTRING(formatted_phone, 1, 1) = '0' THEN formatted_phone
+        ELSE '0' || formatted_phone
+    END AS owner_phone,
+    owner_address,
+    REGEXP_SUBSTR(owner_address, '[0-9]+', 1, 2) AS zip_code,
+    REGEXP_SUBSTR(owner_address, '[^0-9,]+', 1, 2) AS city
+FROM remove_dups
+WHERE row_num = 1
