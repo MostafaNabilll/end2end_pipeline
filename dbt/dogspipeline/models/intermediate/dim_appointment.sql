@@ -10,6 +10,7 @@ WITH remove_dups AS (
         dog_id,
         veterinarian_id,
         appointment_purpose,
+        fees,
         ROW_NUMBER() OVER (PARTITION BY appointment_id ORDER BY appointment_id) AS row_num
     FROM "DOGPIPELINE"."DOGS"."full_data"
 )
@@ -19,6 +20,7 @@ SELECT
     appointment_date,
     dog_id,
     veterinarian_id,
-    appointment_purpose
+    appointment_purpose,
+    fees
 FROM remove_dups
 WHERE row_num = 1

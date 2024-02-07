@@ -1,0 +1,16 @@
+specialty_id,specialty_name,fees,description
+1,Anesthesia and Analgesia,500,Manage pain and complications during surgery
+2,Animal Welfare,600,Advance animal well-being and provide accurate information
+3,Behavioral Medicine,550,Address behavioral issues in animals beyond basic obedience
+4,Clinical Pharmacology,700,Specialized in drug development and usage for animals
+5,Dentistry,800,"Qualified to clean, adjust, and extract teeth in animals"
+6,Dermatology,750,Treat various skin diseases and related health problems in animals
+7,Emergency and Critical Care,900,Provide prompt medical attention in emergency situations
+8,Internal Medicine (Cardiology),1000,Treat uncommon or complicated diseases related to the heart
+9,Laboratory Animal Medicine,650,Ensure proper care for animals used in laboratory settings
+10,Microbiology,720,"Research bacteria, parasites, and microorganisms causing diseases"
+11,Nutrition,580,Manage animals diets and develop nutrition plans for sick animals
+12,Ophthalmology,850,Specialize in treating eye diseases in animals
+13,Pathology,780,Diagnose diseases by examining tissue or fluid samples
+14,Poultry Veterinary Medicine,670,"Work with domestic birds like chickens, turkeys, and ducks in food production"
+15,Preventive Medicine,630,Detect and control diseases affecting both animals and humans

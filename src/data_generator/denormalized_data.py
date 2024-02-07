@@ -29,12 +29,15 @@ class DogDataGenerator:
         ]
 
     def generate_owner(self):
-        owner_first_name = self.fake.first_name()
+        owner_gender = self.fake.random_element(['Male', 'Female'])
+        owner_first_name = self.fake.first_name_male() if owner_gender=="Male" else self.fake.first_name_female()
         owner_last_name = self.fake.last_name()
         return {
             'owner_id': str(uuid.uuid4()),
             'owner_first_name': owner_first_name,
             'owner_last_name': owner_last_name,
+            'owner_age': random.randint(18,85),
+            'owner_gender': owner_gender,
             'owner_email': f"{owner_first_name.lower()}.{owner_last_name.lower()}@{self.fake.random_element(['gmail.com', 'outlook.com'])}",
             'owner_phone': self.fake.phone_number(),
             'owner_address': self.fake.address(),
@@ -99,26 +102,43 @@ class DogDataGenerator:
         }
 
         return transaction_data
-
+    
     def generate_veterinarian(self):
-        vet_id = str(uuid.uuid4())  # Each veterinarian gets a new veterinarian_id
+        vet_id = str(uuid.uuid4())
+        veterinarian_gender = self.fake.random_element(['Male', 'Female'])
+        veterinarian_first_name = self.fake.first_name_male() if veterinarian_gender == "Male" else self.fake.first_name_female()
+
         return {
             'veterinarian_id': vet_id,
-            'veterinarian_first_name': self.fake.first_name(),
+            'veterinarian_first_name': veterinarian_first_name,
             'veterinarian_last_name': self.fake.last_name(),
-            'veterinarian_specialization': self.fake.word(),
+            'veterinarian_gender': veterinarian_gender,
+            'veterinarian_age': random.randint(28, 85),
             'veterinarian_contact': self.fake.phone_number(),
         }
-
+    
     def generate_appointment(self):
-        appointment_date = self.fake.date_between(start_date='today', end_date='+30d')
-        
+        appointment_date = self.fake.date_between(start_date='today', end_date='+120d')
+
+        # Load the data from the CSV file
+        synthetic_product_data = pd.read_csv('../synthetic_specialists_data.csv')
+        specialist_data = synthetic_product_data.sample().to_dict(orient='records')[0]
+
+        # Extract required values
+        veterinarian_specialization_id = specialist_data.get('specialty_id')
+        specialty_name = specialist_data.get('specialty_name')
+        fees = specialist_data.get('fees')
+        description = specialist_data.get('description')
+
         return {
             'appointment_id': str(uuid.uuid4()),
             'appointment_date': appointment_date,
-            'appointment_purpose': self.fake.sentence(),
+            'appointment_purpose': description,
+            'veterinarian_specialization_id': veterinarian_specialization_id,
+            'specialty_name': specialty_name,
+            'fees': fees,
         }
-
+    
     def generate_data(self):
         data = []
         for _ in range(self.num_records):
@@ -201,7 +221,7 @@ def upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access
 
     s3 = boto3.client(
         's3',
-        region_name='eu-west-3',  # Update the region code
+        region_name='eu-west-3',
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
     )

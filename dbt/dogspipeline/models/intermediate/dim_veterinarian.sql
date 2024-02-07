@@ -8,7 +8,9 @@ WITH remove_dups AS (
         veterinarian_id,
         veterinarian_first_name,
         veterinarian_last_name,
-        veterinarian_specialization,
+        veterinarian_gender,
+        veterinarian_age,
+        specialty_name,
         CASE
             WHEN SUBSTRING(TRIM(REGEXP_REPLACE(veterinarian_contact, '[^0-9]', '')), 1, 1) = '0' THEN TRIM(REGEXP_REPLACE(veterinarian_contact, '[^0-9]', ''))
             WHEN SUBSTRING(TRIM(REGEXP_REPLACE(veterinarian_contact, '[^0-9]', '')), 1, 2) = '33' THEN '0' || SUBSTRING(TRIM(REGEXP_REPLACE(veterinarian_contact, '[^0-9]', '')), 3)
@@ -23,7 +25,9 @@ SELECT
     veterinarian_id,
     veterinarian_first_name,
     veterinarian_last_name,
-    veterinarian_specialization,
+    veterinarian_gender,
+    veterinarian_age,
+    specialty_name,
     CASE
         WHEN SUBSTRING(veterinarian_contact, 1, 2) = '00' THEN '0' || SUBSTRING(veterinarian_contact, 3)
         WHEN SUBSTRING(veterinarian_contact, 1, 1) = '0' THEN veterinarian_contact
