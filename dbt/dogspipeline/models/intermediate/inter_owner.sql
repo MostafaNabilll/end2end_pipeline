@@ -1,6 +1,5 @@
 {{ config(
-    materialized='incremental',
-    unique_key='owner_id'
+    materialized='table'
 ) }}
 
 WITH remove_dups AS (
@@ -16,8 +15,11 @@ WITH remove_dups AS (
             ELSE '0' || TRIM(REGEXP_REPLACE(owner_phone, '[^0-9]', ''))
         END AS formatted_phone,
         owner_address,
+        owner_zip_code,
+        owner_city,
         ROW_NUMBER() OVER (PARTITION BY owner_id ORDER BY owner_id) AS row_num
-    FROM "DOGPIPELINE"."DOGS"."full_data"
+    FROM 
+        {{ref('stg_owner')}}
 )
 
 SELECT
@@ -30,8 +32,9 @@ SELECT
         WHEN SUBSTRING(formatted_phone, 1, 1) = '0' THEN formatted_phone
         ELSE '0' || formatted_phone
     END AS owner_phone,
-    owner_address,
-    REGEXP_SUBSTR(owner_address, '[0-9]+', 1, 2) AS zip_code,
-    REGEXP_SUBSTR(owner_address, '[^0-9,]+', 1, 2) AS city
-FROM remove_dups
-WHERE row_num = 1
+    owner_address
+
+FROM 
+    remove_dups
+WHERE 
+    row_num = 1

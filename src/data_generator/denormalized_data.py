@@ -166,8 +166,6 @@ class DogDataGenerator:
 
 
 
-
-
 def get_secret():
     secret_name = "S3-cred"
     region_name = "eu-west-3"
@@ -242,7 +240,7 @@ if __name__ == "__main__":
         
         data_generator = DogDataGenerator(num_records=5000)
         
-        generated_data_file = 'denormalized_data.csv'
+        generated_data_file = '../denormalized_data.csv'
         data_generator.save_to_csv(generated_data_file)
 
         bucket_name = 'dogspipeline-personal'

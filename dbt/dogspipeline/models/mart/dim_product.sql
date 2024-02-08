@@ -1,15 +1,16 @@
 {{ config(
-    materialized='table',
+    materialized='incremental',
     unique_key='product_id'
 ) }}
 
-WITH remove_dups AS (
+WITH dim_product AS (
     SELECT
         product_id,
         product_name,
         product_description,
         product_price
-     FROM "DOGPIPELINE"."DOGS"."full_data"
+     FROM 
+        {{ref('inter_product')}}
 )
 
 SELECT
@@ -17,4 +18,5 @@ SELECT
     product_name,
     product_description,
     product_price
-FROM remove_dups
+FROM 
+    dim_product
