@@ -40,16 +40,13 @@ class ProductDataGenerator:
             {'product_id': 35, 'product_name': 'Dog Ear Cleaner', 'product_price': 11.49, 'product_description': 'Gentle ear cleaner solution for dogs'},
         ]
     
-    def add_products(self, new_products):
-        self.product_data.extend(new_products)
 
-    def generate_csv(self, filename='synthetic_product_data.csv'):
+    def generate_csv(self, filename='/tmp/synthetic_product_data.csv'):
         synthetic_df = pd.DataFrame(self.product_data)
         synthetic_df.to_csv(filename, index=False)
         return synthetic_df
 
-
 if __name__ == "__main__":
     data_generator = ProductDataGenerator()
-    csv_filename = '../synthetic_product_data.csv'
+    csv_filename = '/tmp/synthetic_product_data.csv'
     data_generator.generate_csv(csv_filename)

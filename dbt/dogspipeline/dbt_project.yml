@@ -29,9 +29,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   # Be sure to namespace your model configs to your project name
-  dogs
-  pipeline:
-    # This configures models found in models/intermediate/
+  dogspipeline:
+      # This configures models found in models/intermediate/
     staging:
       +enabled: true
       +materialized: view

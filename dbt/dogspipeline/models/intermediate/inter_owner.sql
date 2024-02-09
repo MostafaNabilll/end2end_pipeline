@@ -33,7 +33,6 @@ SELECT
         ELSE '0' || formatted_phone
     END AS owner_phone,
     owner_address
-
 FROM 
     remove_dups
 WHERE 
