@@ -160,7 +160,4 @@ cython_debug/
 #.idea/
 .vscode
 /airflow/logs/
-/airflow/config/
-/airflow/plugins/
-/dbt/dogspipeline/packages.yml
 
