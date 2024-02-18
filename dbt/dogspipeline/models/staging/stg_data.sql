@@ -6,7 +6,7 @@ with stg_data as (
     SELECT
         *
     FROM 
-        "DOGPIPELINE"."DOGS"."full_data" 
+        DOGPIPELINE.DOGS.full_data
 )
 
 SELECT 

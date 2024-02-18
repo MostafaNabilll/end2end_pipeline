@@ -6,7 +6,7 @@ sources:
     database: DOGPIPELINE
     schema: DOGS
     tables:
-      - name: stg_data
+      - name: full_data
         description: Raw data table
         freshness:
           warn_after:
