@@ -160,4 +160,4 @@ cython_debug/
 #.idea/
 .env
 ./.vscode
-#dbt/dogspipeline/profiles.yml
+./dbt/dogspipeline/profiles.yml
