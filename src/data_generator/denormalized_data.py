@@ -65,8 +65,11 @@ class DogDataGenerator:
             'owner_id': owner_id,
         }
 
+
     def generate_product(self, order_id):
-        synthetic_product_data = pd.read_csv('../synthetic_product_data.csv')
+        script_dir = os.path.dirname(os.path.realpath(__file__))
+        csv_file_path = os.path.join(script_dir, '../synthetic_product_data.csv')
+        synthetic_product_data = pd.read_csv(csv_file_path) 
         product = synthetic_product_data.sample().to_dict(orient='records')[0]
         quantity = random.randint(1, 10)
         subtotal = round(product['product_price'] * quantity, 2)
@@ -119,9 +122,9 @@ class DogDataGenerator:
     
     def generate_appointment(self):
         appointment_date = self.fake.date_between(start_date='today', end_date='+120d')
-
-        # Load the data from the CSV file
-        synthetic_product_data = pd.read_csv('../synthetic_specialists_data.csv')
+        script_dir = os.path.dirname(os.path.realpath(__file__))
+        csv_file_path = os.path.join(script_dir, '../synthetic_specialists_data.csv')
+        synthetic_product_data = pd.read_csv(csv_file_path) 
         specialist_data = synthetic_product_data.sample().to_dict(orient='records')[0]
 
         # Extract required values
@@ -162,7 +165,13 @@ class DogDataGenerator:
 
     def save_to_csv(self, filename):
         df = self.create_dataframe()
+        # Check if the file already exists
+        if os.path.exists(filename):
+            # If it exists, create a new filename with a timestamp
+            timestamp = datetime.now().strftime("%Y%m%d%H")
+            filename = f"output_data_{timestamp}.csv"
         df.to_csv(filename, index=False)
+
 
 
 
@@ -217,6 +226,9 @@ def create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key, regi
 def upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access_key):
     create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key)
 
+    timestamp = datetime.now().strftime("%Y%m%d%H")
+    file_key_with_timestamp = f'data/output_data_{timestamp}.csv'
+
     s3 = boto3.client(
         's3',
         region_name='eu-west-3',
@@ -227,8 +239,8 @@ def upload_to_s3(df, bucket_name, file_key, aws_access_key_id, aws_secret_access
     csv_buffer = StringIO()
     df.to_csv(csv_buffer, index=False)
 
-    s3.put_object(Body=csv_buffer.getvalue(), Bucket=bucket_name, Key=file_key)
-    print(f"Data uploaded to S3 bucket '{bucket_name}' with file key '{file_key}'.")
+    s3.put_object(Body=csv_buffer.getvalue(), Bucket=bucket_name, Key=file_key_with_timestamp)
+    print(f"Data uploaded to S3 bucket '{bucket_name}' with file key '{file_key_with_timestamp}'.")
 
 
 
@@ -238,9 +250,9 @@ if __name__ == "__main__":
         aws_access_key_id = secret.get('aws_access_key_id')
         aws_secret_access_key = secret.get('aws_secret_access_key')
         
-        data_generator = DogDataGenerator(num_records=5000)
+        data_generator = DogDataGenerator(num_records=1000)
         
-        generated_data_file = '../denormalized_data.csv'
+        generated_data_file = '/tmp/denormalized_data.csv'
         data_generator.save_to_csv(generated_data_file)
 
         bucket_name = 'dogspipeline-personal'
