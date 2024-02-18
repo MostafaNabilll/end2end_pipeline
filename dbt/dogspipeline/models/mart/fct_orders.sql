@@ -19,7 +19,7 @@ WITH dedup as (
         ROW_NUMBER() OVER (PARTITION BY transaction_id ORDER BY order_date) AS row_num
 
     FROM
-        {{ref('inter_orders')}} AS fl
+        {{ref('stg_data')}} AS fl
     LEFT JOIN 
         {{ref('dim_owner')}} AS do 
             ON fl.owner_id = do.owner_id
@@ -28,7 +28,7 @@ WITH dedup as (
             ON fl.dog_id = dd.dog_id
     LEFT JOIN 
         {{ref('dim_veterinarian')}} AS dv 
-            ON fl.vet_id = dv.vet_id
+            ON fl.veterinarian_id = dv.vet_id
     LEFT JOIN 
         {{ref('dim_appointment')}} AS da 
             ON fl.appointment_id = da.appointment_id
