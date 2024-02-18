@@ -83,13 +83,16 @@ check_s3_objects_task = PythonOperator(
     dag=dag,
 )
 
+file = f'output_data_{current_date}.csv'
+
 insert_into_table_task = SnowflakeOperator(
     task_id='insert_into_table',
     snowflake_conn_id=snowflake_conn_id,
-    sql="""
-        COPY INTO DOGS.stg_data
+    sql=f"""
+        COPY INTO DOGS.full_data
         FROM @S3_STAGE/
-        FILE_FORMAT = (TYPE = 'CSV', FIELD_OPTIONALLY_ENCLOSED_BY = '"', FIELD_DELIMITER = ';', COMPRESSION = 'NONE',   ERROR_ON_COLUMN_COUNT_MISMATCH = FALSE);
+        PATTERN = {file}  
+        FILE_FORMAT = (TYPE = 'CSV', FIELD_OPTIONALLY_ENCLOSED_BY = '"', FIELD_DELIMITER = ';', COMPRESSION = 'NONE', ERROR_ON_COLUMN_COUNT_MISMATCH = FALSE);
     """,
     dag=dag,
 )
