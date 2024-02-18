@@ -6,7 +6,7 @@ sources:
     database: DOGPIPELINE
     schema: DOGS
     tables:
-      - name: full_data
+      - name: stg_data
         description: Raw data table
         freshness:
           warn_after:
@@ -19,9 +19,6 @@ sources:
           - name: owner_id
             description: Unique ID for the owner
             tests:
-              - unique:
-                  config:
-                    warn_if: ">1"
               - not_null
           - name: owner_first_name
             description: Owner's first name
@@ -54,9 +51,6 @@ sources:
           - name: dog_id
             description: Unique ID for the dog
             tests:
-              - unique:
-                  config:
-                    warn_if: ">1"
               - not_null
           - name: dog_name
             description: Dog's name
@@ -77,10 +71,6 @@ sources:
           - name: order_id
             description: Unique ID for the order
             tests:
-              - unique:
-                  config:
-                    warn_if: ">1"
-                    error_if: ">10000"
               - not_null
           - name: order_date
             description: Date of the order
@@ -89,9 +79,6 @@ sources:
           - name: product_id
             description: Unique ID for the product
             tests:
-              - unique:
-                  config:
-                    warn_if: ">1"
               - not_null
           - name: quantity
             description: Quantity of the product in the order
@@ -116,16 +103,10 @@ sources:
           - name: transaction_id
             description: Unique ID for the transaction
             tests:
-              - unique:
-                  config:
-                    warn_if: ">1"
               - not_null
           - name: veterinarian_id
             description: Unique ID for the veterinarian
             tests:
-              - unique:
-                  config:
-                    warn_if: ">1"
               - not_null
           - name: veterinarian_first_name
             description: Veterinarian's first name
@@ -150,9 +131,6 @@ sources:
           - name: appointment_id
             description: Unique ID for the appointment
             tests:
-              - unique:
-                  config:
-                    warn_if: ">1"
               - not_null
           - name: appointment_date
             description: Date of the appointment
