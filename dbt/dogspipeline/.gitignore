@@ -5,3 +5,4 @@ logs/
 .user.yml
 package-lock.yml
 packages.yml
+profiles.yml
