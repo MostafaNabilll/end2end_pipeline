@@ -1,0 +1,41 @@
+f526167d5137
+*** Found local files:
+***   * /opt/airflow/logs/dag_id=dog_data_generation/run_id=manual__2024-02-18T18:28:02.258271+00:00/task_id=insert_into_table/attempt=1.log
+[2024-02-18, 18:28:28 UTC] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dog_data_generation.insert_into_table manual__2024-02-18T18:28:02.258271+00:00 [queued]>
+[2024-02-18, 18:28:28 UTC] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dog_data_generation.insert_into_table manual__2024-02-18T18:28:02.258271+00:00 [queued]>
+[2024-02-18, 18:28:28 UTC] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2024-02-18, 18:28:28 UTC] {taskinstance.py:2191} INFO - Executing <Task(SnowflakeOperator): insert_into_table> on 2024-02-18 18:28:02.258271+00:00
+[2024-02-18, 18:28:28 UTC] {standard_task_runner.py:60} INFO - Started process 9045 to run task
+[2024-02-18, 18:28:28 UTC] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'dog_data_generation', 'insert_into_table', 'manual__2024-02-18T18:28:02.258271+00:00', '--job-id', '191', '--raw', '--subdir', 'DAGS_FOLDER/data_orchestration.py', '--cfg-path', '/tmp/tmpngu5hcw5']
+[2024-02-18, 18:28:28 UTC] {standard_task_runner.py:88} INFO - Job 191: Subtask insert_into_table
+[2024-02-18, 18:28:28 UTC] {task_command.py:423} INFO - Running <TaskInstance: dog_data_generation.insert_into_table manual__2024-02-18T18:28:02.258271+00:00 [running]> on host f526167d5137
+[2024-02-18, 18:28:28 UTC] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dog_data_generation' AIRFLOW_CTX_TASK_ID='insert_into_table' AIRFLOW_CTX_EXECUTION_DATE='2024-02-18T18:28:02.258271+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-02-18T18:28:02.258271+00:00'
+[2024-02-18, 18:28:28 UTC] {sql.py:276} INFO - Executing: 
+        COPY INTO DOGS.stg_data
+        FROM @S3_STAGE/
+        FILE_FORMAT = (TYPE = 'CSV', FIELD_OPTIONALLY_ENCLOSED_BY = '"', FIELD_DELIMITER = ';', COMPRESSION = 'NONE',   ERROR_ON_COLUMN_COUNT_MISMATCH = FALSE);
+    
+[2024-02-18, 18:28:28 UTC] {base.py:83} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2024-02-18, 18:28:28 UTC] {base.py:83} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2024-02-18, 18:28:28 UTC] {connection.py:370} INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34
+[2024-02-18, 18:28:28 UTC] {connection.py:1171} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-02-18, 18:28:29 UTC] {cursor.py:1028} INFO - query: [ALTER SESSION SET autocommit=False]
+[2024-02-18, 18:28:29 UTC] {cursor.py:1041} INFO - query execution done
+[2024-02-18, 18:28:29 UTC] {cursor.py:1205} INFO - Number of results in first chunk: 1
+[2024-02-18, 18:28:29 UTC] {sql.py:450} INFO - Running statement: COPY INTO DOGS.stg_data
+        FROM @S3_STAGE/
+        FILE_FORMAT = (TYPE = 'CSV', FIELD_OPTIONALLY_ENCLOSED_BY = '"', FIELD_DELIMITER = ';', COMPRESSION = 'NONE',   ERROR_ON_COLUMN_COUNT_MISMATCH = FALSE);, parameters: None
+[2024-02-18, 18:28:29 UTC] {cursor.py:1028} INFO - query: [COPY INTO DOGS.stg_data FROM @S3_STAGE/ FILE_FORMAT = (TYPE = 'CSV', FIELD_OPTIO...]
+[2024-02-18, 18:28:30 UTC] {cursor.py:1041} INFO - query execution done
+[2024-02-18, 18:28:30 UTC] {cursor.py:1205} INFO - Number of results in first chunk: 5
+[2024-02-18, 18:28:30 UTC] {sql.py:459} INFO - Rows affected: 5
+[2024-02-18, 18:28:30 UTC] {snowflake.py:402} INFO - Rows affected: 5
+[2024-02-18, 18:28:30 UTC] {snowflake.py:403} INFO - Snowflake query id: 01b27034-0000-4366-0000-88dd00018a8e
+[2024-02-18, 18:28:30 UTC] {cursor.py:1028} INFO - query: [COMMIT]
+[2024-02-18, 18:28:31 UTC] {cursor.py:1041} INFO - query execution done
+[2024-02-18, 18:28:31 UTC] {cursor.py:1205} INFO - Number of results in first chunk: 1
+[2024-02-18, 18:28:31 UTC] {connection.py:718} INFO - closed
+[2024-02-18, 18:28:31 UTC] {connection.py:724} INFO - No async queries seem to be running, deleting session
+[2024-02-18, 18:28:31 UTC] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=dog_data_generation, task_id=insert_into_table, execution_date=20240218T182802, start_date=20240218T182828, end_date=20240218T182831
+[2024-02-18, 18:28:31 UTC] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-02-18, 18:28:31 UTC] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
