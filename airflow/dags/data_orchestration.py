@@ -10,13 +10,11 @@ import os
 current_date = datetime.utcnow().strftime('%Y%m%d%H')
 dag_directory = os.path.dirname(os.path.realpath(__file__))
 script_path = os.path.join(dag_directory, '../src/data_generator/denormalized_data.py')
+PATH_TO_DBT_PROJECT = os.path.join(dag_directory, '../dbt/dogspipeline')
 
 s3_bucket_name = 'dogspipeline-personal'
 s3_key_pattern = f'data/output_data_{current_date}.csv'
-snowflake_table = "full_data"
-snowflake_schema = 'DOGS'
 snowflake_conn_id = 'snowflake_conn'
-snowflake_stage = 's3_stage'
 
 default_args = {
     'owner': 'airflow',
@@ -33,7 +31,7 @@ dag = DAG(
 )
 
 def run_denormalized_data_script(**kwargs):
-    aws_conn_id = 'x'
+    aws_conn_id = 'aws_conn'
     aws_hook = BaseHook.get_hook(aws_conn_id)
     
     aws_access_key_id = aws_hook.get_connection(aws_conn_id).login
@@ -96,10 +94,6 @@ insert_into_table_task = SnowflakeOperator(
     dag=dag,
 )
 
-PATH_TO_DBT_PROJECT = os.path.join(dag_directory, '../dbt/dogspipeline')
-DBT_PROFILES_DIR = os.path.join(dag_directory, '../dbt/dogspipeline/profiles.yml')
-
-    
 initate_dbt_task = BashOperator(
     task_id = 'dbt_initiate',
     bash_command = 'dbt deps && dbt seed --select state_codes --profiles-dir . --target dev',

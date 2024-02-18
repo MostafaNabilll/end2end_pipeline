@@ -1,0 +1,97 @@
+f526167d5137
+*** Found local files:
+***   * /opt/airflow/logs/dag_id=dog_data_generation/run_id=manual__2024-02-18T18:28:02.258271+00:00/task_id=dbt_test/attempt=1.log
+[2024-02-18, 18:29:26 UTC] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dog_data_generation.dbt_test manual__2024-02-18T18:28:02.258271+00:00 [queued]>
+[2024-02-18, 18:29:26 UTC] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dog_data_generation.dbt_test manual__2024-02-18T18:28:02.258271+00:00 [queued]>
+[2024-02-18, 18:29:26 UTC] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2024-02-18, 18:29:26 UTC] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): dbt_test> on 2024-02-18 18:28:02.258271+00:00
+[2024-02-18, 18:29:26 UTC] {standard_task_runner.py:60} INFO - Started process 9174 to run task
+[2024-02-18, 18:29:26 UTC] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'dog_data_generation', 'dbt_test', 'manual__2024-02-18T18:28:02.258271+00:00', '--job-id', '199', '--raw', '--subdir', 'DAGS_FOLDER/data_orchestration.py', '--cfg-path', '/tmp/tmp04jbivmp']
+[2024-02-18, 18:29:26 UTC] {standard_task_runner.py:88} INFO - Job 199: Subtask dbt_test
+[2024-02-18, 18:29:26 UTC] {task_command.py:423} INFO - Running <TaskInstance: dog_data_generation.dbt_test manual__2024-02-18T18:28:02.258271+00:00 [running]> on host f526167d5137
+[2024-02-18, 18:29:26 UTC] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dog_data_generation' AIRFLOW_CTX_TASK_ID='dbt_test' AIRFLOW_CTX_EXECUTION_DATE='2024-02-18T18:28:02.258271+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-02-18T18:28:02.258271+00:00'
+[2024-02-18, 18:29:26 UTC] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-02-18, 18:29:26 UTC] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'dbt test --profiles-dir . --target dev']
+[2024-02-18, 18:29:26 UTC] {subprocess.py:86} INFO - Output:
+[2024-02-18, 18:29:29 UTC] {subprocess.py:93} INFO - [0m18:29:29  Running with dbt=1.7.4
+[2024-02-18, 18:29:30 UTC] {subprocess.py:93} INFO - [0m18:29:30  Registered adapter: snowflake=1.7.0
+[2024-02-18, 18:29:31 UTC] {subprocess.py:93} INFO - [0m18:29:31  Found 19 models, 33 tests, 1 source, 0 exposures, 0 metrics, 544 macros, 0 groups, 0 semantic models
+[2024-02-18, 18:29:31 UTC] {subprocess.py:93} INFO - [0m18:29:31
+[2024-02-18, 18:29:32 UTC] {subprocess.py:93} INFO - [0m18:29:32  Concurrency: 1 threads (target='dev')
+[2024-02-18, 18:29:32 UTC] {subprocess.py:93} INFO - [0m18:29:32
+[2024-02-18, 18:29:32 UTC] {subprocess.py:93} INFO - [0m18:29:32  1 of 33 START test source_not_null_dogspipeline_stg_data_appointment_date ...... [RUN]
+[2024-02-18, 18:29:32 UTC] {subprocess.py:93} INFO - [0m18:29:32  1 of 33 PASS source_not_null_dogspipeline_stg_data_appointment_date ............ [[32mPASS[0m in 0.46s]
+[2024-02-18, 18:29:32 UTC] {subprocess.py:93} INFO - [0m18:29:32  2 of 33 START test source_not_null_dogspipeline_stg_data_appointment_id ........ [RUN]
+[2024-02-18, 18:29:32 UTC] {subprocess.py:93} INFO - [0m18:29:32  2 of 33 PASS source_not_null_dogspipeline_stg_data_appointment_id .............. [[32mPASS[0m in 0.43s]
+[2024-02-18, 18:29:32 UTC] {subprocess.py:93} INFO - [0m18:29:32  3 of 33 START test source_not_null_dogspipeline_stg_data_appointment_purpose ... [RUN]
+[2024-02-18, 18:29:33 UTC] {subprocess.py:93} INFO - [0m18:29:33  3 of 33 PASS source_not_null_dogspipeline_stg_data_appointment_purpose ......... [[32mPASS[0m in 0.29s]
+[2024-02-18, 18:29:33 UTC] {subprocess.py:93} INFO - [0m18:29:33  4 of 33 START test source_not_null_dogspipeline_stg_data_dog_age ............... [RUN]
+[2024-02-18, 18:29:33 UTC] {subprocess.py:93} INFO - [0m18:29:33  4 of 33 PASS source_not_null_dogspipeline_stg_data_dog_age ..................... [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:33 UTC] {subprocess.py:93} INFO - [0m18:29:33  5 of 33 START test source_not_null_dogspipeline_stg_data_dog_breed ............. [RUN]
+[2024-02-18, 18:29:33 UTC] {subprocess.py:93} INFO - [0m18:29:33  5 of 33 PASS source_not_null_dogspipeline_stg_data_dog_breed ................... [[32mPASS[0m in 0.31s]
+[2024-02-18, 18:29:33 UTC] {subprocess.py:93} INFO - [0m18:29:33  6 of 33 START test source_not_null_dogspipeline_stg_data_dog_gender ............ [RUN]
+[2024-02-18, 18:29:34 UTC] {subprocess.py:93} INFO - [0m18:29:34  6 of 33 PASS source_not_null_dogspipeline_stg_data_dog_gender .................. [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:34 UTC] {subprocess.py:93} INFO - [0m18:29:34  7 of 33 START test source_not_null_dogspipeline_stg_data_dog_id ................ [RUN]
+[2024-02-18, 18:29:34 UTC] {subprocess.py:93} INFO - [0m18:29:34  7 of 33 PASS source_not_null_dogspipeline_stg_data_dog_id ...................... [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:34 UTC] {subprocess.py:93} INFO - [0m18:29:34  8 of 33 START test source_not_null_dogspipeline_stg_data_dog_name .............. [RUN]
+[2024-02-18, 18:29:34 UTC] {subprocess.py:93} INFO - [0m18:29:34  8 of 33 PASS source_not_null_dogspipeline_stg_data_dog_name .................... [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:34 UTC] {subprocess.py:93} INFO - [0m18:29:34  9 of 33 START test source_not_null_dogspipeline_stg_data_order_date ............ [RUN]
+[2024-02-18, 18:29:35 UTC] {subprocess.py:93} INFO - [0m18:29:35  9 of 33 PASS source_not_null_dogspipeline_stg_data_order_date .................. [[32mPASS[0m in 0.31s]
+[2024-02-18, 18:29:35 UTC] {subprocess.py:93} INFO - [0m18:29:35  10 of 33 START test source_not_null_dogspipeline_stg_data_order_id ............. [RUN]
+[2024-02-18, 18:29:35 UTC] {subprocess.py:93} INFO - [0m18:29:35  10 of 33 PASS source_not_null_dogspipeline_stg_data_order_id ................... [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:35 UTC] {subprocess.py:93} INFO - [0m18:29:35  11 of 33 START test source_not_null_dogspipeline_stg_data_owner_address ........ [RUN]
+[2024-02-18, 18:29:35 UTC] {subprocess.py:93} INFO - [0m18:29:35  11 of 33 PASS source_not_null_dogspipeline_stg_data_owner_address .............. [[32mPASS[0m in 0.37s]
+[2024-02-18, 18:29:35 UTC] {subprocess.py:93} INFO - [0m18:29:35  12 of 33 START test source_not_null_dogspipeline_stg_data_owner_age ............ [RUN]
+[2024-02-18, 18:29:36 UTC] {subprocess.py:93} INFO - [0m18:29:36  12 of 33 PASS source_not_null_dogspipeline_stg_data_owner_age .................. [[32mPASS[0m in 0.29s]
+[2024-02-18, 18:29:36 UTC] {subprocess.py:93} INFO - [0m18:29:36  13 of 33 START test source_not_null_dogspipeline_stg_data_owner_email .......... [RUN]
+[2024-02-18, 18:29:36 UTC] {subprocess.py:93} INFO - [0m18:29:36  13 of 33 PASS source_not_null_dogspipeline_stg_data_owner_email ................ [[32mPASS[0m in 0.52s]
+[2024-02-18, 18:29:36 UTC] {subprocess.py:93} INFO - [0m18:29:36  14 of 33 START test source_not_null_dogspipeline_stg_data_owner_first_name ..... [RUN]
+[2024-02-18, 18:29:36 UTC] {subprocess.py:93} INFO - [0m18:29:36  14 of 33 PASS source_not_null_dogspipeline_stg_data_owner_first_name ........... [[32mPASS[0m in 0.29s]
+[2024-02-18, 18:29:36 UTC] {subprocess.py:93} INFO - [0m18:29:36  15 of 33 START test source_not_null_dogspipeline_stg_data_owner_gender ......... [RUN]
+[2024-02-18, 18:29:37 UTC] {subprocess.py:93} INFO - [0m18:29:37  15 of 33 PASS source_not_null_dogspipeline_stg_data_owner_gender ............... [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:37 UTC] {subprocess.py:93} INFO - [0m18:29:37  16 of 33 START test source_not_null_dogspipeline_stg_data_owner_id ............. [RUN]
+[2024-02-18, 18:29:37 UTC] {subprocess.py:93} INFO - [0m18:29:37  16 of 33 PASS source_not_null_dogspipeline_stg_data_owner_id ................... [[32mPASS[0m in 0.29s]
+[2024-02-18, 18:29:37 UTC] {subprocess.py:93} INFO - [0m18:29:37  17 of 33 START test source_not_null_dogspipeline_stg_data_owner_last_name ...... [RUN]
+[2024-02-18, 18:29:37 UTC] {subprocess.py:93} INFO - [0m18:29:37  17 of 33 PASS source_not_null_dogspipeline_stg_data_owner_last_name ............ [[32mPASS[0m in 0.29s]
+[2024-02-18, 18:29:37 UTC] {subprocess.py:93} INFO - [0m18:29:37  18 of 33 START test source_not_null_dogspipeline_stg_data_owner_phone .......... [RUN]
+[2024-02-18, 18:29:38 UTC] {subprocess.py:93} INFO - [0m18:29:38  18 of 33 PASS source_not_null_dogspipeline_stg_data_owner_phone ................ [[32mPASS[0m in 0.29s]
+[2024-02-18, 18:29:38 UTC] {subprocess.py:93} INFO - [0m18:29:38  19 of 33 START test source_not_null_dogspipeline_stg_data_product_description .. [RUN]
+[2024-02-18, 18:29:38 UTC] {subprocess.py:93} INFO - [0m18:29:38  19 of 33 PASS source_not_null_dogspipeline_stg_data_product_description ........ [[32mPASS[0m in 0.37s]
+[2024-02-18, 18:29:38 UTC] {subprocess.py:93} INFO - [0m18:29:38  20 of 33 START test source_not_null_dogspipeline_stg_data_product_id ........... [RUN]
+[2024-02-18, 18:29:38 UTC] {subprocess.py:93} INFO - [0m18:29:38  20 of 33 PASS source_not_null_dogspipeline_stg_data_product_id ................. [[32mPASS[0m in 0.31s]
+[2024-02-18, 18:29:38 UTC] {subprocess.py:93} INFO - [0m18:29:38  21 of 33 START test source_not_null_dogspipeline_stg_data_product_name ......... [RUN]
+[2024-02-18, 18:29:39 UTC] {subprocess.py:93} INFO - [0m18:29:39  21 of 33 PASS source_not_null_dogspipeline_stg_data_product_name ............... [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:39 UTC] {subprocess.py:93} INFO - [0m18:29:39  22 of 33 START test source_not_null_dogspipeline_stg_data_product_price ........ [RUN]
+[2024-02-18, 18:29:39 UTC] {subprocess.py:93} INFO - [0m18:29:39  22 of 33 PASS source_not_null_dogspipeline_stg_data_product_price .............. [[32mPASS[0m in 0.29s]
+[2024-02-18, 18:29:39 UTC] {subprocess.py:93} INFO - [0m18:29:39  23 of 33 START test source_not_null_dogspipeline_stg_data_quantity ............. [RUN]
+[2024-02-18, 18:29:39 UTC] {subprocess.py:93} INFO - [0m18:29:39  23 of 33 PASS source_not_null_dogspipeline_stg_data_quantity ................... [[32mPASS[0m in 0.37s]
+[2024-02-18, 18:29:39 UTC] {subprocess.py:93} INFO - [0m18:29:39  24 of 33 START test source_not_null_dogspipeline_stg_data_specialty_name ....... [RUN]
+[2024-02-18, 18:29:40 UTC] {subprocess.py:93} INFO - [0m18:29:40  24 of 33 PASS source_not_null_dogspipeline_stg_data_specialty_name ............. [[32mPASS[0m in 0.52s]
+[2024-02-18, 18:29:40 UTC] {subprocess.py:93} INFO - [0m18:29:40  25 of 33 START test source_not_null_dogspipeline_stg_data_subtotal ............. [RUN]
+[2024-02-18, 18:29:40 UTC] {subprocess.py:93} INFO - [0m18:29:40  25 of 33 PASS source_not_null_dogspipeline_stg_data_subtotal ................... [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:40 UTC] {subprocess.py:93} INFO - [0m18:29:40  26 of 33 START test source_not_null_dogspipeline_stg_data_transaction_id ....... [RUN]
+[2024-02-18, 18:29:40 UTC] {subprocess.py:93} INFO - [0m18:29:40  26 of 33 PASS source_not_null_dogspipeline_stg_data_transaction_id ............. [[32mPASS[0m in 0.29s]
+[2024-02-18, 18:29:40 UTC] {subprocess.py:93} INFO - [0m18:29:40  27 of 33 START test source_not_null_dogspipeline_stg_data_veterinarian_age ..... [RUN]
+[2024-02-18, 18:29:41 UTC] {subprocess.py:93} INFO - [0m18:29:41  27 of 33 PASS source_not_null_dogspipeline_stg_data_veterinarian_age ........... [[32mPASS[0m in 0.29s]
+[2024-02-18, 18:29:41 UTC] {subprocess.py:93} INFO - [0m18:29:41  28 of 33 START test source_not_null_dogspipeline_stg_data_veterinarian_contact . [RUN]
+[2024-02-18, 18:29:41 UTC] {subprocess.py:93} INFO - [0m18:29:41  28 of 33 PASS source_not_null_dogspipeline_stg_data_veterinarian_contact ....... [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:41 UTC] {subprocess.py:93} INFO - [0m18:29:41  29 of 33 START test source_not_null_dogspipeline_stg_data_veterinarian_first_name  [RUN]
+[2024-02-18, 18:29:41 UTC] {subprocess.py:93} INFO - [0m18:29:41  29 of 33 PASS source_not_null_dogspipeline_stg_data_veterinarian_first_name .... [[32mPASS[0m in 0.29s]
+[2024-02-18, 18:29:41 UTC] {subprocess.py:93} INFO - [0m18:29:41  30 of 33 START test source_not_null_dogspipeline_stg_data_veterinarian_gender .. [RUN]
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42  30 of 33 PASS source_not_null_dogspipeline_stg_data_veterinarian_gender ........ [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42  31 of 33 START test source_not_null_dogspipeline_stg_data_veterinarian_id ...... [RUN]
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42  31 of 33 PASS source_not_null_dogspipeline_stg_data_veterinarian_id ............ [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42  32 of 33 START test source_not_null_dogspipeline_stg_data_veterinarian_last_name  [RUN]
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42  32 of 33 PASS source_not_null_dogspipeline_stg_data_veterinarian_last_name ..... [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42  33 of 33 START test source_not_null_dogspipeline_stg_data_veterinarian_specialization_id  [RUN]
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42  33 of 33 PASS source_not_null_dogspipeline_stg_data_veterinarian_specialization_id  [[32mPASS[0m in 0.30s]
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42  Finished running 33 tests in 0 hours 0 minutes and 11.25 seconds (11.25s).
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42  [32mCompleted successfully[0m
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42
+[2024-02-18, 18:29:42 UTC] {subprocess.py:93} INFO - [0m18:29:42  Done. PASS=33 WARN=0 ERROR=0 SKIP=0 TOTAL=33
+[2024-02-18, 18:29:43 UTC] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-02-18, 18:29:43 UTC] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=dog_data_generation, task_id=dbt_test, execution_date=20240218T182802, start_date=20240218T182926, end_date=20240218T182943
+[2024-02-18, 18:29:43 UTC] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-02-18, 18:29:43 UTC] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
