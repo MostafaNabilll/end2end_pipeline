@@ -10,9 +10,7 @@ The Dogspipeline DBT project transforms raw generated data into clean, structure
 
 2. **Data Integrity**: Implement unique and not-null tests on key columns to maintain data quality.
 
-3. **Surrogate Key Construction**: Build surrogate keys for data integrity and effective database management.
-
-4. **Data Transformation**: Convert raw data into a suitable format for analysis.
+3. **Data Transformation**: Convert raw data into a suitable format for analysis.
 
 ## Project Structure
 
