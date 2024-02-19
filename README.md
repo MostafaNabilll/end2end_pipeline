@@ -67,6 +67,8 @@ Simulating a modern data stack, showcasing familiarity with various technologies
   - Airflow: Orchestrated the data pipeline extraction process, running Python, Snowflake, and Bash Operators to perform different tasks.
   - dbt (Data Build Tool): Utilized for the intermediate and data mart layers, enabling the implementation of CTEs, normalizations, and a Snowflake schema.
 
+![Model databases](https://github.com/MostafaNabilll/end2end_pipeline/assets/60539423/1374714b-b70e-4a16-999c-d6641df87b78)
+
 ## Conclusion
 
 Encountered learning opportunities and challenges, testing fundamental technical skills for a data engineer.
