@@ -83,5 +83,6 @@ Encountered learning opportunities and challenges, testing fundamental technical
 
 1. Add different data sources like APIs.
 2. Dive deep into different services like API gateway, CloudWatch.
-3. Implement an Infrastructure as Code like Terraform.
-4. Integrate Tableau for dashboard visualization.
+3. Implement a CI/CD.
+4. Implement an Infrastructure as Code like Terraform.
+5. Integrate Tableau for dashboard visualization.
