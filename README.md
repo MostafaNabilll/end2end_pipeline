@@ -25,20 +25,19 @@ Navigate through the project's structure:
 
 # Contents
 
-- [The Generated Data](the-generated-data)
+- [The Generated Data](#the-generated-data)
 - [Used Tools](#used-tools)
 - [Conclusion](#conclusion)
 - [Key Highlights](#key-highlights)
 - [Remaining Tasks](#remaining-tasks)
 
 ## The Generated Data
-<div id="the-generated-data"></div>
 
 ### Data Components
 
 - **Denormalized data**: Stored as CSV files, containing all the necessary data, generated through a Python script.
-- **Product data**: The product dataset is created using a Python script and stored as a [CSV file](#). <!-- Add the correct hyperlink here. -->
-- **Vet data**: The Vet dataset is created using a Python script and stored as a [CSV file](#). <!-- Add the correct hyperlink here. -->
+- **Product data**: The product dataset is created using a Python script and stored as a CSV file.
+- **Vet data**: The Vet dataset is created using a Python script and stored as a CSV file.
 
 ### Objectives
 
@@ -46,7 +45,7 @@ Navigate through the project's structure:
 2. Utilize a Snowflake schema for effective organization.
 3. Serve transformed data for insights.
 4. Automate the whole process with Airflow.
-5. Create a dashboard.
+5. Create a dashboard with Tableau.
 
 ## Used Tools
 
@@ -54,15 +53,14 @@ Navigate through the project's structure:
 
 Simulating a modern data stack, showcasing familiarity with various technologies.
 
-**Stack**
-
-- Docker, Docker-Compose.
-- AWS Services - EC2, S3, IAM, Lambda, SNS, Secret Manager.
-- Snowflake as Data Warehouse.
-- Python, Pandas, and Databases.
-- Airflow.
-- dbt Core.
-- Data modeling, Snowflake architecture, normalizations.
+- Stack
+  - Docker, Docker-Compose.
+  - AWS Services - EC2, S3, IAM, Lambda, SNS, Secret Manager.
+  - Snowflake as Data Warehouse.
+  - Python, Pandas, and Databases.
+  - Airflow.
+  - dbt Core.
+  - Data modeling, Snowflake architecture, normalizations.
 
 - More specifically, the following technologies were utilized throughout the project:
   - Docker Compose: Used to initiate Apache Airflow for scheduling and orchestration.
