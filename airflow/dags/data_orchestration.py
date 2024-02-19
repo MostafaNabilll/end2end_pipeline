@@ -92,8 +92,9 @@ insert_into_table_task = SnowflakeOperator(
         COPY INTO DOGS.full_data
         FROM @S3_STAGE/
         PATTERN = {file}  
-        FILE_FORMAT = (TYPE = 'CSV', FIELD_OPTIONALLY_ENCLOSED_BY = '"', FIELD_DELIMITER = ';', COMPRESSION = 'NONE', ERROR_ON_COLUMN_COUNT_MISMATCH = FALSE);
-    """,
+        FILE_FORMAT = (TYPE = 'CSV', FIELD_OPTIONALLY_ENCLOSED_BY = '"', FIELD_DELIMITER = ',', COMPRESSION = 'NONE', ERROR_ON_COLUMN_COUNT_MISMATCH = FALSE)
+        ON_ERROR = 'CONTINUE';    
+        """,
     dag=dag,
 )
 
