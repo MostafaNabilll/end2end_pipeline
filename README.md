@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Hello! I'm Mostafa, and this project highlights my exploration in data engineering. The primary objective is to generate synthetic data and integrate it with various tools such as Snowflake, dbt, Airflow, and AWS services like EC2, S3, Lambda, SNS, and more. Additionally, the project aims to utilize and demonstrate proficiency in these technologies.
+This project highlights my exploration in data engineering. The primary objective is to generate synthetic data and integrate it with various tools such as Snowflake, dbt, Airflow, and AWS services like EC2, S3, Lambda, SNS, and more. Additionally, the project aims to utilize and demonstrate proficiency in these technologies.
 
 ## Goals
 
