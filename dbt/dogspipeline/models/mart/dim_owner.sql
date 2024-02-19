@@ -14,6 +14,7 @@ SELECT
     owner_id,
     owner_first_name,
     owner_last_name,
+    owner_age,
     owner_email,
     owner_phone,
     owner_address

@@ -26,6 +26,7 @@ SELECT
     owner_id,
     owner_first_name,
     owner_last_name,
+    owner_age,
     owner_email,
     CASE
         WHEN SUBSTRING(formatted_phone, 1, 2) = '00' THEN '0' || SUBSTRING(formatted_phone, 3)
