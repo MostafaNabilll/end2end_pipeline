@@ -21,7 +21,8 @@ Navigate through the project's structure:
 - `src`: Python scripts for generating fake data and sample of the data in CSV.
 
 
-## Pipeline Contents
+## Pipeline Diagram
+![Screenshot 2024-02-19 234757](https://github.com/MostafaNabilll/end2end_pipeline/assets/60539423/ba492583-74e3-4877-8437-d2c01494652e)
 
 # Contents
 
