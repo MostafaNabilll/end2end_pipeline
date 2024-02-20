@@ -17,6 +17,8 @@ SELECT
     owner_age,
     owner_email,
     owner_phone,
-    owner_address
+    owner_address,
+    owner_zip_code,
+    owner_city
 FROM 
     dim_owner

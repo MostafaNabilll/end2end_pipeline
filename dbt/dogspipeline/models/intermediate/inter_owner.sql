@@ -7,6 +7,7 @@ WITH remove_dups AS (
         owner_id,
         owner_first_name,
         owner_last_name,
+        owner_age,
         owner_email,
         CASE
             WHEN SUBSTRING(TRIM(REGEXP_REPLACE(owner_phone, '[^0-9]', '')), 1, 1) = '0' THEN TRIM(REGEXP_REPLACE(owner_phone, '[^0-9]', ''))
@@ -33,7 +34,9 @@ SELECT
         WHEN SUBSTRING(formatted_phone, 1, 1) = '0' THEN formatted_phone
         ELSE '0' || formatted_phone
     END AS owner_phone,
-    owner_address
+    owner_address,
+    owner_zip_code,
+    owner_city
 FROM 
     remove_dups
 WHERE 
