@@ -48,14 +48,12 @@ def check_s3_file(**kwargs):
         bucket_name = 'dogspipeline-personal'
         s3_key = f'data/output_data_{current_date}.csv'
 
-        # Use list_keys() to get a list of keys in the bucket
         keys = s3_hook.list_keys(bucket_name=bucket_name)
 
         print("List of S3 keys:")
         for key in keys:
             print(key.encode('utf-8'))
 
-        # Check if the specific key exists
         if s3_key in keys:
             print('File added to S3')
             print(s3_key)
