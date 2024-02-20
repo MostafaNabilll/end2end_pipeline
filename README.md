@@ -23,8 +23,7 @@ Navigate through the project's structure:
 
 ## Pipeline Diagram
 
-![Screenshot 2024-](https://github.com/MostafaNabilll/end2end_pipeline/assets/60539423/3b775837-f366-4435-be39-9af84583e350)
-
+![Screenshot 2024-02-20 010816](https://github.com/MostafaNabilll/end2end_pipeline/assets/60539423/9a8b8214-bc14-4af7-8d9c-75df0ee5364c)
 
 
 # Contents
