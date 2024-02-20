@@ -75,8 +75,8 @@ class DogDataGenerator:
         subtotal = round(product['product_price'] * quantity, 2)
 
         product_data = {
-            'product_id': str(uuid.uuid4()),  # Each product gets a new product_id
-            'order_id': order_id,  # Each product has the same order_id
+            'product_id': str(uuid.uuid4()), 
+            'order_id': order_id, 
             'quantity': quantity,
             'subtotal': subtotal,
             **product
@@ -93,7 +93,6 @@ class DogDataGenerator:
         quantity = int(product_data['quantity'])
         subtotal = float(product_data['subtotal'])
         
-        # Include the order date in the transaction_id
         transaction_id = f"{order_id}_{self.fake.date_time_this_decade().strftime('%Y%m%d%H%M%S')}"
 
         transaction_data = {
@@ -127,7 +126,6 @@ class DogDataGenerator:
         synthetic_product_data = pd.read_csv(csv_file_path) 
         specialist_data = synthetic_product_data.sample().to_dict(orient='records')[0]
 
-        # Extract required values
         veterinarian_specialization_id = specialist_data.get('specialty_id')
         specialty_name = specialist_data.get('specialty_name')
         fees = specialist_data.get('fees')
@@ -165,9 +163,7 @@ class DogDataGenerator:
 
     def save_to_csv(self, filename):
         df = self.create_dataframe()
-        # Check if the file already exists
         if os.path.exists(filename):
-            # If it exists, create a new filename with a timestamp
             timestamp = datetime.now().strftime("%Y%m%d%H")
             filename = f"output_data_{timestamp}.csv"
         df.to_csv(filename, index=False)
@@ -194,7 +190,6 @@ def get_secret():
 
     secret_string = get_secret_value_response['SecretString']
     
-    # Parse the JSON string into a dictionary
     secret = json.loads(secret_string)
     
     return secret
@@ -219,7 +214,6 @@ def create_s3_bucket(bucket_name, aws_access_key_id, aws_secret_access_key, regi
             )
             print(f"S3 bucket '{bucket_name}' created.")
         else:
-            # Other error, print the error message
             print(f"Error: {e.response['Error']['Message']}")
 
 
