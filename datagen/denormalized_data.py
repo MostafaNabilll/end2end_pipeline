@@ -9,7 +9,6 @@ from botocore.exceptions import ClientError
 from io import StringIO
 import os
 import json
-import snowflake.connector
 
 
 class DogDataGenerator:
@@ -68,7 +67,7 @@ class DogDataGenerator:
 
     def generate_product(self, order_id):
         script_dir = os.path.dirname(os.path.realpath(__file__))
-        csv_file_path = os.path.join(script_dir, '../synthetic_product_data.csv')
+        csv_file_path = os.path.join(script_dir, 'data/synthetic_product_data.csv')
         synthetic_product_data = pd.read_csv(csv_file_path) 
         product = synthetic_product_data.sample().to_dict(orient='records')[0]
         quantity = random.randint(1, 10)
@@ -122,7 +121,7 @@ class DogDataGenerator:
     def generate_appointment(self):
         appointment_date = self.fake.date_between(start_date='today', end_date='+120d')
         script_dir = os.path.dirname(os.path.realpath(__file__))
-        csv_file_path = os.path.join(script_dir, '../synthetic_specialists_data.csv')
+        csv_file_path = os.path.join(script_dir, 'data/synthetic_specialists_data.csv')
         synthetic_product_data = pd.read_csv(csv_file_path) 
         specialist_data = synthetic_product_data.sample().to_dict(orient='records')[0]
 
@@ -165,7 +164,7 @@ class DogDataGenerator:
         df = self.create_dataframe()
         if os.path.exists(filename):
             timestamp = datetime.now().strftime("%Y%m%d%H")
-            filename = f"output_data_{timestamp}.csv"
+            filename = f"data/output_data_{timestamp}.csv"
         df.to_csv(filename, index=False)
 
 
