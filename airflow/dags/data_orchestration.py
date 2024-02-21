@@ -30,10 +30,11 @@ dag = DAG(
     catchup=False
 )
 
-def run_denormalized_data_script():
+def run_denormalized_data_script(**kwargs):
     aws_conn_id = 'aws_conn'
     aws_hook = BaseHook.get_hook(aws_conn_id)
-
+    print("DAG Directory:", dag_directory)
+    print("Script Path:", script_path)
     aws_access_key_id = aws_hook.get_connection(aws_conn_id).login
     aws_secret_access_key = aws_hook.get_connection(aws_conn_id).password
 
