@@ -9,7 +9,7 @@ import os
 
 current_date = datetime.utcnow().strftime('%Y%m%d%H')
 dag_directory = os.path.dirname(os.path.realpath(__file__))
-script_path = os.path.join(dag_directory, '../src/data_generator/denormalized_data.py')
+script_path = os.path.join(dag_directory, '../datagen/denormalized_data.py')
 PATH_TO_DBT_PROJECT = os.path.join(dag_directory, '../dbt/dogspipeline')
 
 s3_bucket_name = 'dogspipeline-personal'
@@ -30,10 +30,10 @@ dag = DAG(
     catchup=False
 )
 
-def run_denormalized_data_script(**kwargs):
+def run_denormalized_data_script():
     aws_conn_id = 'aws_conn'
     aws_hook = BaseHook.get_hook(aws_conn_id)
-    
+
     aws_access_key_id = aws_hook.get_connection(aws_conn_id).login
     aws_secret_access_key = aws_hook.get_connection(aws_conn_id).password
 

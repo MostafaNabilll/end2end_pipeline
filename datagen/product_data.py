@@ -41,12 +41,12 @@ class ProductDataGenerator:
         ]
     
 
-    def generate_csv(self, filename='/tmp/synthetic_product_data.csv'):
+    def generate_csv(self, filename='data/synthetic_product_data.csv'):
         synthetic_df = pd.DataFrame(self.product_data)
         synthetic_df.to_csv(filename, index=False)
         return synthetic_df
 
 if __name__ == "__main__":
     data_generator = ProductDataGenerator()
-    csv_filename = '/tmp/synthetic_product_data.csv'
+    csv_filename = 'data/synthetic_product_data.csv'
     data_generator.generate_csv(csv_filename)

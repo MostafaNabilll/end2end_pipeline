@@ -20,7 +20,7 @@ class VeterinarySpecialistsDataGenerator:
             {'specialty_id': 15, 'specialty_name': 'Preventive Medicine', 'fees': 630, 'description': 'Detect and control diseases affecting both animals and humans'},
         ]
 
-    def generate_csv(self, filename='/tmp/synthetic_specialists_data.csv'):
+    def generate_csv(self, filename='data/synthetic_specialists_data.csv'):
         specialists_df = pd.DataFrame(self.specialists_data)
         specialists_df.to_csv(filename, index=False)
         return specialists_df
@@ -28,6 +28,6 @@ class VeterinarySpecialistsDataGenerator:
 
 if __name__ == "__main__":
     specialists_generator = VeterinarySpecialistsDataGenerator()
-    csv_filename = '/tmp/synthetic_specialists_data.csv'
+    csv_filename = 'data/synthetic_specialists_data.csv'
     specialists_generator.generate_csv(csv_filename)
 
