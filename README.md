@@ -23,7 +23,7 @@ Navigate through the project's structure:
 
 ## Pipeline Diagram
 
-![Screenshot 2024-02-20 010816](https://github.com/MostafaNabilll/end2end_pipeline/assets/60539423/9a8b8214-bc14-4af7-8d9c-75df0ee5364c)
+![Screenshot 2024-02-21 225031](https://github.com/MostafaNabilll/end2end_pipeline/assets/60539423/fd0f8817-3b37-4e36-9c82-4e49b7ee6169)
 
 
 # Contents
@@ -70,7 +70,8 @@ Simulating a modern data stack, showcasing familiarity with various technologies
   - Airflow: Orchestrated the data pipeline extraction process, running Python, Snowflake, and Bash Operators to perform different tasks.
   - dbt: Utilized for the intermediate and data mart layers, enabling the implementation of CTEs, normalizations, and a Snowflake schema.
 
-![Model databases](https://github.com/MostafaNabilll/end2end_pipeline/assets/60539423/1374714b-b70e-4a16-999c-d6641df87b78)
+![Model databases (1)](https://github.com/MostafaNabilll/end2end_pipeline/assets/60539423/35cd2a0f-1b44-4065-afdc-107d7a2f20a3)
+
 
 ## Conclusion
 
