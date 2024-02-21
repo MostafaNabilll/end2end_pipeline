@@ -55,7 +55,7 @@ class DogDataGenerator:
         }
 
     def generate_order(self, owner_id):
-        order_id = str(uuid.uuid4())  # Each order gets a new order_id
+        order_id = str(uuid.uuid4()) 
         order_date = self.fake.date_between(start_date='-120d', end_date='today')
         
         return {
