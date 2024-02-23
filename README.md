@@ -18,7 +18,7 @@ Navigate through the project's structure:
 - `aws`: Code for the Lambda function.
 - `dbt/`: Folder containing dbt models and configurations.
 - `samples`: Airflow logs for each task, AWS lambda and DBT linage.
-- `src`: Python scripts for generating fake data and sample of the data in CSV.
+- `datagen/`: Python scripts for generating fake data and a sample of the data in CSV.
 
 
 ## Pipeline Diagram
