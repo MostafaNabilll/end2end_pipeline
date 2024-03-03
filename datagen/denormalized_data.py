@@ -249,7 +249,7 @@ if __name__ == "__main__":
         data_generator.save_to_csv(generated_data_file)
 
         bucket_name = 'dogspipeline-personal'
-        file_key = 'data/denormalized_data.csv'
+        file_key = 'data/'
 
         df = pd.read_csv(generated_data_file)
 
